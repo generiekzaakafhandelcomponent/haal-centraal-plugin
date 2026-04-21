@@ -15,42 +15,45 @@
  *
  */
 
+val freemarkerPluginVersion: String by project
+val haalCentraalAuthVersion: String by project
+val kotlinLoggingMicroutilsVersion: String by project
+val mockitoKotlinVersion: String by project
+val objectManagementPluginVersion: String by project
+val reactorNettyVersion: String by project
+val springWebfluxVersion: String by project
+
 dockerCompose {
     setProjectName("HaalCentraal")
     isRequiredBy(project.tasks.integrationTesting)
+}
 
-    val valtimoVersion: String by project
+dependencies {
+    implementation("io.github.microutils:kotlin-logging:$kotlinLoggingMicroutilsVersion")
 
-    dependencies {
-        implementation(platform("com.ritense.valtimo:valtimo-dependency-versions:$valtimoVersion"))
-        implementation("com.ritense.valtimo:valtimo-gzac-dependencies")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 
-        implementation("io.github.microutils:kotlin-logging")
+    implementation("com.ritense.valtimoplugins:freemarker:$freemarkerPluginVersion")
+    implementation("com.ritense.valtimoplugins:object-management:$objectManagementPluginVersion")
+    implementation("com.ritense.valtimoplugins:haal-centraal-authentication:$haalCentraalAuthVersion")
 
-        implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    // Netty and WebClient
+    implementation("io.projectreactor.netty:reactor-netty-core:$reactorNettyVersion")
+    implementation("io.projectreactor.netty:reactor-netty-http:$reactorNettyVersion")
+    implementation("org.springframework:spring-webflux:$springWebfluxVersion")
 
-        implementation(project(":backend:freemarker"))
-        implementation(project(":backend:object-management"))
-        implementation(project(":backend:haal-centraal-auth"))
+    // Testing
+    testImplementation("com.ritense.valtimo:local-resource")
+    testImplementation("com.ritense.valtimo:test-utils-common")
 
-        // Netty and WebClient
-        implementation("io.projectreactor.netty:reactor-netty-core:1.1.20")
-        implementation("io.projectreactor.netty:reactor-netty-http:1.1.20")
-        implementation("org.springframework:spring-webflux:6.1.10")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
 
-        // Testing
-        testImplementation("com.ritense.valtimo:local-resource")
-        testImplementation("com.ritense.valtimo:test-utils-common")
+    testImplementation("org.mockito:mockito-core")
+    testImplementation("org.hamcrest:hamcrest-library")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:$mockitoKotlinVersion")
 
-        testImplementation("org.springframework.boot:spring-boot-starter-test")
-
-        testImplementation("org.mockito:mockito-core")
-        testImplementation("org.hamcrest:hamcrest-library")
-        testImplementation("org.mockito.kotlin:mockito-kotlin:5.4.0")
-
-        testImplementation("org.jetbrains.kotlin:kotlin-test")
-        testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
-    }
+    testImplementation("org.jetbrains.kotlin:kotlin-test")
+    testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
 }
 
 apply(from = "gradle/publishing.gradle")
