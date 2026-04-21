@@ -29,7 +29,7 @@ import com.ritense.valtimoplugins.haalcentraal.brp.model.BewoningenRequest
 import com.ritense.valtimoplugins.haalcentraal.brp.service.HaalCentraalBrpService
 import com.ritense.valtimoplugins.haalcentraalauth.HaalCentraalAuthentication
 import mu.KotlinLogging
-import org.camunda.bpm.engine.delegate.DelegateExecution
+import org.operaton.bpm.engine.delegate.DelegateExecution
 import java.net.URI
 
 @Plugin(
@@ -62,7 +62,7 @@ class HaalCentraalBrpPlugin(
         execution: DelegateExecution
     ) {
 
-        logger.info { "Retrieving bewoningen for case ${execution.businessKey}" }
+        logger.info { "Retrieving bewoningen for case ${execution.processBusinessKey}" }
 
         try {
             haalCentraalBrpService.getBewoningen(
@@ -70,7 +70,7 @@ class HaalCentraalBrpPlugin(
                 bewoningenRequest = BewoningenRequest(QUERY_TYPE, adresseerbaarObjectIdentificatie, peildatum),
                 authentication = authenticationPluginConfiguration
             )?.let {
-                execution.processInstance.setVariable(
+                execution.setVariable(
                     resultProcessVariableName,
                     objectMapper.convertValue(it)
                 )

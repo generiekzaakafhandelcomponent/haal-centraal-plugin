@@ -27,7 +27,7 @@ import com.ritense.valtimoplugins.haalcentraal.bag.exception.AddressNotFoundExce
 import com.ritense.valtimoplugins.haalcentraal.bag.model.AddressRequest
 import com.ritense.valtimoplugins.haalcentraalauth.HaalCentraalAuthentication
 import mu.KotlinLogging
-import org.camunda.bpm.engine.delegate.DelegateExecution
+import org.operaton.bpm.engine.delegate.DelegateExecution
 import java.net.URI
 
 @Plugin(

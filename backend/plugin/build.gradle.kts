@@ -29,9 +29,14 @@ dockerCompose {
 }
 
 dependencies {
+    implementation("com.ritense.valtimo:core")
+    implementation("com.ritense.valtimo:plugin")
+    implementation("com.ritense.valtimo:plugin-valtimo")
+
     implementation("io.github.microutils:kotlin-logging:$kotlinLoggingMicroutilsVersion")
 
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 
     implementation("com.ritense.valtimoplugins:freemarker:$freemarkerPluginVersion")
     implementation("com.ritense.valtimoplugins:object-management:$objectManagementPluginVersion")
