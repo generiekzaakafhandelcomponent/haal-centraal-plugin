@@ -29,23 +29,23 @@ dockerCompose {
 }
 
 dependencies {
-    implementation("com.ritense.valtimo:core")
-    implementation("com.ritense.valtimo:plugin")
-    implementation("com.ritense.valtimo:plugin-valtimo")
+    compileOnly("com.ritense.valtimo:core")
+    compileOnly("com.ritense.valtimo:plugin")
+    compileOnly("com.ritense.valtimo:plugin-valtimo")
 
-    implementation("io.github.microutils:kotlin-logging:$kotlinLoggingMicroutilsVersion")
+    compileOnly("io.github.microutils:kotlin-logging:$kotlinLoggingMicroutilsVersion")
 
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+    compileOnly("org.springframework.boot:spring-boot-starter-data-jpa")
+    compileOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
 
-    implementation("com.ritense.valtimoplugins:freemarker:$freemarkerPluginVersion")
-    implementation("com.ritense.valtimoplugins:object-management:$objectManagementPluginVersion")
-    implementation("com.ritense.valtimoplugins:haal-centraal-authentication:$haalCentraalAuthVersion")
+    compileOnly("com.ritense.valtimoplugins:freemarker:$freemarkerPluginVersion")
+    compileOnly("com.ritense.valtimoplugins:object-management:$objectManagementPluginVersion")
+    compileOnly("com.ritense.valtimoplugins:haal-centraal-authentication:$haalCentraalAuthVersion")
 
     // Netty and WebClient
     implementation("io.projectreactor.netty:reactor-netty-core:$reactorNettyVersion")
     implementation("io.projectreactor.netty:reactor-netty-http:$reactorNettyVersion")
-    implementation("org.springframework:spring-webflux:$springWebfluxVersion")
+    compileOnly("org.springframework:spring-webflux:$springWebfluxVersion")
 
     // Testing
     testImplementation("com.ritense.valtimo:local-resource")
