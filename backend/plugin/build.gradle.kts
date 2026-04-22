@@ -17,7 +17,7 @@
 
 val freemarkerPluginVersion: String by project
 val haalCentraalAuthVersion: String by project
-val kotlinLoggingMicroutilsVersion: String by project
+val kotlinLoggingVersion: String by project
 val mockitoKotlinVersion: String by project
 val objectManagementPluginVersion: String by project
 val reactorNettyVersion: String by project
@@ -33,7 +33,7 @@ dependencies {
     compileOnly("com.ritense.valtimo:plugin")
     compileOnly("com.ritense.valtimo:plugin-valtimo")
 
-    compileOnly("io.github.microutils:kotlin-logging:$kotlinLoggingMicroutilsVersion")
+    compileOnly("io.github.oshai:kotlin-logging-jvm:$kotlinLoggingVersion")
 
     compileOnly("org.springframework.boot:spring-boot-starter-data-jpa")
     compileOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
