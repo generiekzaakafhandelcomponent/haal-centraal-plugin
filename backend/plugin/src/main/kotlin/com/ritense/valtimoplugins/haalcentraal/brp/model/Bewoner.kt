@@ -22,5 +22,5 @@ data class Bewoner(
     val geheimhoudingPersoonsgegevens: Boolean? = null,
     val inOnderzoek: Boolean? = null,
     val naam: Naam? = null,
-    val geboorte: Geboorte? = null
+    val geboorte: Geboorte? = null,
 )

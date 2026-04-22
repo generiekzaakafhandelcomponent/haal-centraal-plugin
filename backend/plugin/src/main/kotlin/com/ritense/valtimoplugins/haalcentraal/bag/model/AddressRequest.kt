@@ -25,5 +25,5 @@ data class AddressRequest(
     val huisnummer: Int,
     val huisnummertoevoeging: String? = null,
     val huisletter: String? = null,
-    val exacteMatch: Boolean
+    val exacteMatch: Boolean,
 )

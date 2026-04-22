@@ -23,12 +23,10 @@ import com.ritense.valtimoplugins.haalcentraal.brp.service.HaalCentraalBrpServic
 
 class HaalCentraalBrpPluginFactory(
     private val haalCentraalBrpService: HaalCentraalBrpService,
-    pluginService: PluginService
+    pluginService: PluginService,
 ) : PluginFactory<HaalCentraalBrpPlugin>(pluginService) {
-
-    override fun create(): HaalCentraalBrpPlugin {
-        return HaalCentraalBrpPlugin(
-            haalCentraalBrpService
+    override fun create(): HaalCentraalBrpPlugin =
+        HaalCentraalBrpPlugin(
+            haalCentraalBrpService,
         )
-    }
 }

@@ -29,5 +29,5 @@ data class Pand(
     val geconstateerd: String?,
     val documentdatum: String?,
     val documentnummer: String?,
-    val voorkomen: Voorkomen?
+    val voorkomen: Voorkomen?,
 )

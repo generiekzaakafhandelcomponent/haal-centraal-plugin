@@ -26,7 +26,7 @@ import com.ritense.valtimoplugins.haalcentraal.bag.model.common.Voorkomen
 data class Nummeraanduiding(
     val nummeraanduiding: NummeraanduidingDetails?,
     val inonderzoek: List<Onderzoek>?,
-    @JsonProperty("_links") val links: Links?
+    @JsonProperty("_links") val links: Links?,
 )
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -44,5 +44,5 @@ data class NummeraanduidingDetails(
     val documentnummer: String,
     val voorkomen: Voorkomen,
     val ligtIn: String,
-    val ligtAan: String?
+    val ligtAan: String?,
 )

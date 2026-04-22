@@ -1,4 +1,4 @@
-rootProject.name = "gzac-plugin-template"
+rootProject.name = "haal-centraal-plugin"
 include(
     "backend",
     "backend:app",

@@ -23,11 +23,10 @@ import com.ritense.valtimoplugins.haalcentraal.bag.service.HaalCentraalBagServic
 
 class HaalCentraalBagPluginFactory(
     private val haalCentraalBagService: HaalCentraalBagService,
-    pluginService: PluginService
+    pluginService: PluginService,
 ) : PluginFactory<HaalCentraalBagPlugin>(pluginService) {
-    override fun create(): HaalCentraalBagPlugin {
-        return HaalCentraalBagPlugin(
-            haalCentraalBagService
+    override fun create(): HaalCentraalBagPlugin =
+        HaalCentraalBagPlugin(
+            haalCentraalBagService,
         )
-    }
 }

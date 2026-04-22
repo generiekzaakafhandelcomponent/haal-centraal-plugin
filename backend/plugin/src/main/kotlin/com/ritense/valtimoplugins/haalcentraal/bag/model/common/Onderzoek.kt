@@ -32,5 +32,5 @@ data class Onderzoek(
     val inOnderzoek: String,
     val historie: Historie?,
     val documentdatum: String,
-    val documentnummer: String
+    val documentnummer: String,
 )

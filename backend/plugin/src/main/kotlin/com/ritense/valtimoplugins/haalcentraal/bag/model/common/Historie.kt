@@ -26,5 +26,5 @@ data class Historie(
     val beginGeldigheid: String?,
     val eindGeldigheid: String?,
     val tijdstipRegistratieLV: String?,
-    val tijdstipEindRegistratieLV: String?
+    val tijdstipEindRegistratieLV: String?,
 )

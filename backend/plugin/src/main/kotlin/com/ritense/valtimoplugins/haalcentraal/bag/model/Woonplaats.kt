@@ -26,7 +26,7 @@ import com.ritense.valtimoplugins.haalcentraal.bag.model.common.Voorkomen
 data class Woonplaats(
     val woonplaats: WoonplaatsDetails?,
     val inonderzoek: List<Onderzoek>?,
-    @JsonProperty("_links") val links: Links?
+    @JsonProperty("_links") val links: Links?,
 )
 
 data class WoonplaatsDetails(
@@ -37,5 +37,5 @@ data class WoonplaatsDetails(
     val geconstateerd: String,
     val documentdatum: String,
     val documentnummer: String,
-    val voorkomen: Voorkomen
+    val voorkomen: Voorkomen,
 )

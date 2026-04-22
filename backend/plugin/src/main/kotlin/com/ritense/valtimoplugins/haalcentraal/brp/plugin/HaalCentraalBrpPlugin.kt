@@ -28,7 +28,7 @@ import com.ritense.valtimoplugins.haalcentraal.brp.exception.HcBewoningenNotFoun
 import com.ritense.valtimoplugins.haalcentraal.brp.model.BewoningenRequest
 import com.ritense.valtimoplugins.haalcentraal.brp.service.HaalCentraalBrpService
 import com.ritense.valtimoplugins.haalcentraalauth.HaalCentraalAuthentication
-import mu.KotlinLogging
+import io.github.oshai.kotlinlogging.KotlinLogging
 import org.operaton.bpm.engine.delegate.DelegateExecution
 import java.net.URI
 
@@ -37,10 +37,9 @@ import java.net.URI
     title = "Haal centraal BRP",
     description = "Haal Centraal BRP plugin",
 )
-
 @Suppress("UNUSED")
 class HaalCentraalBrpPlugin(
-    private val haalCentraalBrpService: HaalCentraalBrpService
+    private val haalCentraalBrpService: HaalCentraalBrpService,
 ) {
     @PluginProperty(key = "brpBaseUrl", secret = false, required = true)
     lateinit var brpBaseUrl: URI
@@ -48,33 +47,32 @@ class HaalCentraalBrpPlugin(
     @PluginProperty(key = "authenticationPluginConfiguration", secret = false, required = true)
     lateinit var authenticationPluginConfiguration: HaalCentraalAuthentication
 
-
     @PluginAction(
         key = "hc-brp-get-bewoningen",
         title = "HC BRP get bewoningen with peildatum",
         description = "HC BRP get bewoningen with peildatum",
-        activityTypes = [ActivityTypeWithEventName.SERVICE_TASK_START]
+        activityTypes = [ActivityTypeWithEventName.SERVICE_TASK_START],
     )
     fun getBewoningen(
         @PluginActionProperty adresseerbaarObjectIdentificatie: String,
         @PluginActionProperty peildatum: String,
         @PluginActionProperty resultProcessVariableName: String,
-        execution: DelegateExecution
+        execution: DelegateExecution,
     ) {
-
-        logger.info { "Retrieving bewoningen for case ${execution.processBusinessKey}" }
+        logger.info { "Retrieving bewoningen for case ${execution.businessKey}" }
 
         try {
-            haalCentraalBrpService.getBewoningen(
-                baseUrl = brpBaseUrl,
-                bewoningenRequest = BewoningenRequest(QUERY_TYPE, adresseerbaarObjectIdentificatie, peildatum),
-                authentication = authenticationPluginConfiguration
-            )?.let {
-                execution.setVariable(
-                    resultProcessVariableName,
-                    objectMapper.convertValue(it)
-                )
-            }
+            haalCentraalBrpService
+                .getBewoningen(
+                    baseUrl = brpBaseUrl,
+                    bewoningenRequest = BewoningenRequest(QUERY_TYPE, adresseerbaarObjectIdentificatie, peildatum),
+                    authentication = authenticationPluginConfiguration,
+                )?.let {
+                    execution.processInstance.setVariable(
+                        resultProcessVariableName,
+                        objectMapper.convertValue(it),
+                    )
+                }
         } catch (e: HcBewoningenNotFoundException) {
             return
         }

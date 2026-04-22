@@ -24,13 +24,9 @@ import org.springframework.web.client.RestClient
 
 @AutoConfiguration
 class HaalCentraalAutoConfiguration {
-
     @Bean
-    fun haalCentraalWebClient(
-        restClientBuilder: RestClient.Builder,
-    ): HaalCentraalWebClient {
-        return HaalCentraalWebClient(
+    fun haalCentraalWebClient(restClientBuilder: RestClient.Builder): HaalCentraalWebClient =
+        HaalCentraalWebClient(
             restClientBuilder,
         )
-    }
 }
