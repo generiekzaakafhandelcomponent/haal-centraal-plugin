@@ -1,0 +1,8 @@
+{
+    "key": "haal-centraal",
+    "name": "Haal Centraal",
+    "versionTag": "1.0.0",
+    "final": false,
+    "canHaveAssignee": false,
+    "autoAssignTasks": false
+}

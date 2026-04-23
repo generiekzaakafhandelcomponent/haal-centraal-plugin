@@ -15,21 +15,24 @@
  *
  */
 
-val freemarkerPluginVersion: String by project
 val haalCentraalAuthVersion: String by project
 val kotlinLoggingVersion: String by project
 val mockitoKotlinVersion: String by project
-val objectManagementPluginVersion: String by project
 val reactorNettyVersion: String by project
 val springWebfluxVersion: String by project
 
 dockerCompose {
     setProjectName("HaalCentraal")
     isRequiredBy(project.tasks.integrationTesting)
+
+    tasks.integrationTesting {
+        useComposeFiles.addAll("$rootDir/docker-resources/docker-compose-base-test.yml")
+    }
 }
 
 dependencies {
     compileOnly("com.ritense.valtimo:core")
+    compileOnly("com.ritense.valtimo:object-management")
     compileOnly("com.ritense.valtimo:plugin")
     compileOnly("com.ritense.valtimo:plugin-valtimo")
 
@@ -38,8 +41,6 @@ dependencies {
     compileOnly("org.springframework.boot:spring-boot-starter-data-jpa")
     compileOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
 
-    compileOnly("com.ritense.valtimoplugins:freemarker:$freemarkerPluginVersion")
-    compileOnly("com.ritense.valtimoplugins:object-management:$objectManagementPluginVersion")
     compileOnly("com.ritense.valtimoplugins:haal-centraal-authentication:$haalCentraalAuthVersion")
 
     // Netty and WebClient
@@ -48,17 +49,22 @@ dependencies {
     compileOnly("org.springframework:spring-webflux:$springWebfluxVersion")
 
     // Testing
-    testImplementation("com.ritense.valtimo:local-resource")
+    testImplementation("com.ritense.valtimo:building-block")
+    testImplementation("com.ritense.valtimo:contract")
+    testImplementation("com.ritense.valtimo:core")
+    testImplementation("com.ritense.valtimo:plugin")
+    testImplementation("com.ritense.valtimo:temporary-resource-storage")
     testImplementation("com.ritense.valtimo:test-utils-common")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 
-    testImplementation("org.mockito:mockito-core")
-    testImplementation("org.hamcrest:hamcrest-library")
-    testImplementation("org.mockito.kotlin:mockito-kotlin:$mockitoKotlinVersion")
+    testImplementation("org.postgresql:postgresql")
+    testImplementation("io.github.oshai:kotlin-logging-jvm:$kotlinLoggingVersion")
 
-    testImplementation("org.jetbrains.kotlin:kotlin-test")
-    testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
+    testImplementation("com.ritense.valtimo:plugin-valtimo")
+    testImplementation("com.ritense.valtimoplugins:haal-centraal-authentication:$haalCentraalAuthVersion") {
+        isTransitive = false
+    }
 }
 
 apply(from = "gradle/publishing.gradle")

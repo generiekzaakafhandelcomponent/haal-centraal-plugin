@@ -43,7 +43,7 @@ const haalCentraalBagPluginSpecification: PluginSpecification = {
     For each language key an implementation supports, translation keys with a translation are provided below.
     These can then be used in configuration components using the pluginTranslate pipe or the PluginTranslationService.
     At a minimum, the keys 'title' and 'description' need to be defined.
-    Each function key also requires a translation key. In this case, the key 'sample-action' is added.
+    Each function key also requires a translation key.
      */
     pluginTranslations: {
         nl: {
