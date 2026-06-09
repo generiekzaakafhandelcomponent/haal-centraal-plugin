@@ -104,6 +104,7 @@ import {
   HaalCentraalBagPluginModule,
   haalCentraalBagPluginSpecification,
 } from "@valtimo-plugins/haal-centraal";
+import {HaalCentraalBrpAuthPluginModule, haalCentraalBrpAuthPluginSpecification} from "@valtimo-plugins/haal-centraal-auth";
 
 export function tabsFactory() {
   return new Map<string, object>([
@@ -142,6 +143,7 @@ export function tabsFactory() {
     FormManagementModule,
     FormModule,
     FormsModule,
+    HaalCentraalBrpAuthPluginModule,
     HttpClientModule,
     LayoutModule,
     LoggerModule.forRoot(environment.logger),
@@ -196,6 +198,7 @@ export function tabsFactory() {
         objecttypenApiPluginSpecification,
         openNotificatiesPluginSpecification,
         openZaakPluginSpecification,
+        haalCentraalBrpAuthPluginSpecification,
         haalCentraalBagPluginSpecification,
         haalCentraalBrpPluginSpecification,
         zakenApiPluginSpecification,

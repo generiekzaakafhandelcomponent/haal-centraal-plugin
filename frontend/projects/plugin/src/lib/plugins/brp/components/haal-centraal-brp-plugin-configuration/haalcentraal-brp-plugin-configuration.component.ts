@@ -22,11 +22,11 @@ import {BrpConfig} from '../../models';
 import {TranslateService} from '@ngx-translate/core';
 
 @Component({
-  standalone: false,
     // eslint-disable-next-line @angular-eslint/component-selector
     selector: 'zgw-haalcentraal-handelsregister-plugin-configuration',
     templateUrl: './haalcentraal-brp-plugin-configuration.component.html',
-    styleUrls: ['./haalcentraal-brp-plugin-configuration.component.scss']
+    styleUrls: ['./haalcentraal-brp-plugin-configuration.component.scss'],
+    standalone: false
 })
 export class HaalcentraalBrpPluginConfigurationComponent
     // The component explicitly implements the PluginConfigurationComponent interface

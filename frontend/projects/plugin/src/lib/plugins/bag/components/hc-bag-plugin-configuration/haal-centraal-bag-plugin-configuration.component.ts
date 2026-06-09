@@ -22,11 +22,11 @@ import {BagConfig} from "../../models";
 import {TranslateService} from "@ngx-translate/core";
 
 @Component({
-  standalone: false,
     // eslint-disable-next-line @angular-eslint/component-selector
     selector: 'haal-centraal-bag-plugin-configuration',
     templateUrl: './haal-centraal-bag-plugin-configuration.component.html',
-    styleUrls: ['./haal-centraal-bag-plugin-configuration.component.scss']
+    styleUrls: ['./haal-centraal-bag-plugin-configuration.component.scss'],
+    standalone: false
 })
 export class HaalCentraalBagPluginConfigurationComponent
     // The component explicitly implements the PluginConfigurationComponent interface
