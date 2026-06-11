@@ -30,7 +30,7 @@
                 "src/*"
             ],
             "@valtimo-plugins/haal-centraal": [
-                "projects/plugin/src/public-api.ts"
+                "projects/plugin/src/public_api.ts"
             ]
         }
     },
