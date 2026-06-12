@@ -8,7 +8,6 @@ dependencies {
     implementation("com.ritense.valtimo:valtimo-dependencies")
     implementation("com.ritense.valtimo:valtimo-gzac-dependencies")
     implementation("com.ritense.valtimo:local-mail")
-
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.postgresql:postgresql")
     implementation("io.github.oshai:kotlin-logging:$kotlinLoggingVersion")

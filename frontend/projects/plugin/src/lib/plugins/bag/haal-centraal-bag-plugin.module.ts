@@ -37,7 +37,7 @@ import {
         FormModule,
         InputModule,
         SelectModule,
-        RadioModule,
+        RadioModule
     ],
     exports: [
         HaalCentraalBagPluginConfigurationComponent,
