@@ -28,24 +28,30 @@ import org.springframework.context.annotation.Bean
 
 @AutoConfiguration
 class HaalCentraalBagAutoConfiguration {
+
     @Bean
     @ConditionalOnMissingBean(HaalCentraalBagClient::class)
-    fun haalCentraalBagClient(haalCentraalWebClient: HaalCentraalWebClient): HaalCentraalBagClient =
-        HaalCentraalBagClient(haalCentraalWebClient)
+    fun haalCentraalBagClient(
+        haalCentraalWebClient: HaalCentraalWebClient
+    ): HaalCentraalBagClient = HaalCentraalBagClient(haalCentraalWebClient)
 
     @Bean
     @ConditionalOnMissingBean(HaalCentraalBagService::class)
-    fun haalCentraalBagService(haalCentraalBagClient: HaalCentraalBagClient): HaalCentraalBagService =
-        HaalCentraalBagService(haalCentraalBagClient)
+    fun haalCentraalBagService(
+        haalCentraalBagClient: HaalCentraalBagClient
+    ): HaalCentraalBagService {
+        return HaalCentraalBagService(haalCentraalBagClient)
+    }
 
     @Bean
     @ConditionalOnMissingBean(HaalCentraalBagPluginFactory::class)
     fun haalCentraalBagPluginFactory(
         haalCentraalBagService: HaalCentraalBagService,
-        pluginService: PluginService,
-    ): HaalCentraalBagPluginFactory =
-        HaalCentraalBagPluginFactory(
+        pluginService: PluginService
+    ): HaalCentraalBagPluginFactory {
+        return HaalCentraalBagPluginFactory(
             haalCentraalBagService,
-            pluginService,
+            pluginService
         )
+    }
 }
