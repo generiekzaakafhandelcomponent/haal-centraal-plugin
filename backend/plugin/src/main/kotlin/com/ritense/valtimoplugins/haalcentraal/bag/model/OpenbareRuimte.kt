@@ -26,7 +26,7 @@ import com.ritense.valtimoplugins.haalcentraal.bag.model.common.Voorkomen
 data class OpenbareRuimte(
     val openbareRuimte: OpenbareRuimteDetails?,
     val inonderzoek: List<Onderzoek>?,
-    @JsonProperty("_links") val links: Links?
+    @JsonProperty("_links") val links: Links?,
 )
 
 data class OpenbareRuimteDetails(
@@ -40,5 +40,5 @@ data class OpenbareRuimteDetails(
     val documentdatum: String,
     val documentnummer: String,
     val voorkomen: Voorkomen,
-    val ligtIn: String
+    val ligtIn: String,
 )

@@ -40,5 +40,5 @@ data class AddressDto(
     val geconstateerd: Geconstateerd?,
     val inonderzoek: InOnderzoek?,
     @JsonProperty("_links") val links: Links?,
-    @JsonProperty("_embedded") val embeddedObject: EmbeddedObject?
+    @JsonProperty("_embedded") val embeddedObject: EmbeddedObject?,
 )

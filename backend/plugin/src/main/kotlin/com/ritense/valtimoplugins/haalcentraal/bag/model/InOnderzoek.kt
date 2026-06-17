@@ -35,5 +35,5 @@ data class InOnderzoek(
     val nummeraanduidingStatus: Boolean,
     val toelichting: List<String>,
     val adresregel5: Boolean,
-    val adresregel6: Boolean
+    val adresregel6: Boolean,
 )

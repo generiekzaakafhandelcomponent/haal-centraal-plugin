@@ -25,5 +25,5 @@ data class EmbeddedObject(
     val nummeraanduiding: Nummeraanduiding?,
     val woonplaats: Woonplaats?,
     val adresseerbaarObject: AdresseerbaarObject?,
-    val panden: List<Pand>?
+    val panden: List<Pand>?,
 )

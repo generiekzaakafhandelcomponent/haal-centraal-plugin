@@ -28,23 +28,26 @@ import com.ritense.valtimoplugins.haalcentraalauth.HaalCentraalAuthentication
 import java.net.URI
 
 class HcBrpClient(
-    private val webClient: HaalCentraalWebClient
+    private val webClient: HaalCentraalWebClient,
 ) {
-
     fun getBewoningen(
         baseUrl: URI,
         bewoningenRequest: BewoningenRequest,
-        authentication: HaalCentraalAuthentication
+        authentication: HaalCentraalAuthentication,
     ): BewoningenResponse? {
-        val uri = URI("${baseUrl}/bewoningen")
+        val uri = URI("$baseUrl/bewoningen")
 
         return try {
             webClient.get<BewoningenResponse, BewoningenRequest>(uri, bewoningenRequest, authentication)
         } catch (e: HaalCentraalNotFoundException) {
-            logger.warn("Not found exception: ${e.message} for Adresseerbaar Object Identificatie: ${bewoningenRequest.adresseerbaarObjectIdentificatie}")
+            logger.warn(
+                "Not found exception: ${e.message} for Adresseerbaar Object Identificatie: ${bewoningenRequest.adresseerbaarObjectIdentificatie}",
+            )
             throw HcBewoningenNotFoundException(e.message!!)
         } catch (e: HaalCentraalBadRequestException) {
-            logger.warn("Bad request exception: ${e.message} for Adresseerbaar Object Identificatie: ${bewoningenRequest.adresseerbaarObjectIdentificatie}")
+            logger.warn(
+                "Bad request exception: ${e.message} for Adresseerbaar Object Identificatie: ${bewoningenRequest.adresseerbaarObjectIdentificatie}",
+            )
             throw HcBewoningenNotFoundException(e.message!!)
         }
     }
