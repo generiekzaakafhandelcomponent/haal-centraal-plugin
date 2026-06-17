@@ -27,5 +27,5 @@ data class AddressResponse(
 )
 
 data class Embedded(
-    val adressen: List<Address>?
+    val adressen: List<Address>?,
 )

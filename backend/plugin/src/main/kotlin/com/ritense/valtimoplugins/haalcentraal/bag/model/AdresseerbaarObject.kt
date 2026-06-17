@@ -26,7 +26,7 @@ data class AdresseerbaarObject(
     @JsonProperty("_links") val links: Links,
     val ligplaats: Ligplaats? = null,
     val standplaats: Standplaats? = null,
-    val verblijfsobject: Verblijfsobject? = null
+    val verblijfsobject: Verblijfsobject? = null,
 )
 
 sealed class AdresseerbaarObjectType(
@@ -37,7 +37,7 @@ sealed class AdresseerbaarObjectType(
     open val geconstateerd: String?,
     open val documentdatum: String?,
     open val documentnummer: String?,
-    open val voorkomen: Voorkomen?
+    open val voorkomen: Voorkomen?,
 )
 
 data class Standplaats(
@@ -49,17 +49,17 @@ data class Standplaats(
     override val documentdatum: String,
     override val documentnummer: String,
     override val voorkomen: Voorkomen,
-    val heeftAlsNevenAdres: List<String> = emptyList()
+    val heeftAlsNevenAdres: List<String> = emptyList(),
 ) : AdresseerbaarObjectType(
-    identificatie,
-    domein,
-    oppervlakte,
-    status,
-    geconstateerd,
-    documentdatum,
-    documentnummer,
-    voorkomen
-)
+        identificatie,
+        domein,
+        oppervlakte,
+        status,
+        geconstateerd,
+        documentdatum,
+        documentnummer,
+        voorkomen,
+    )
 
 data class Ligplaats(
     override val identificatie: String,
@@ -70,17 +70,17 @@ data class Ligplaats(
     override val documentdatum: String,
     override val documentnummer: String,
     override val voorkomen: Voorkomen,
-    val heeftAlsNevenAdres: List<String> = emptyList()
+    val heeftAlsNevenAdres: List<String> = emptyList(),
 ) : AdresseerbaarObjectType(
-    identificatie,
-    domein,
-    oppervlakte,
-    status,
-    geconstateerd,
-    documentdatum,
-    documentnummer,
-    voorkomen
-)
+        identificatie,
+        domein,
+        oppervlakte,
+        status,
+        geconstateerd,
+        documentdatum,
+        documentnummer,
+        voorkomen,
+    )
 
 data class Verblijfsobject(
     override val identificatie: String,
@@ -91,14 +91,14 @@ data class Verblijfsobject(
     override val documentdatum: String,
     override val documentnummer: String,
     override val voorkomen: Voorkomen,
-    val maaktDeelUitVan: List<String> = emptyList()
+    val maaktDeelUitVan: List<String> = emptyList(),
 ) : AdresseerbaarObjectType(
-    identificatie,
-    domein,
-    oppervlakte,
-    status,
-    geconstateerd,
-    documentdatum,
-    documentnummer,
-    voorkomen
-)
+        identificatie,
+        domein,
+        oppervlakte,
+        status,
+        geconstateerd,
+        documentdatum,
+        documentnummer,
+        voorkomen,
+    )

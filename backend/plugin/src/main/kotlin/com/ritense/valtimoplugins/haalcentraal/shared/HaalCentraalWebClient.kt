@@ -28,7 +28,7 @@ class HaalCentraalWebClient(
     inline fun <reified T : Any, R : Any?> get(
         uri: URI,
         request: R?,
-        authentication: HaalCentraalAuthentication
+        authentication: HaalCentraalAuthentication,
     ): T? {
         val restClient = buildRestClient(authentication)
         return try {
@@ -48,7 +48,7 @@ class HaalCentraalWebClient(
 
     inline fun <reified T : Any> get(
         uri: URI,
-        authentication: HaalCentraalAuthentication
+        authentication: HaalCentraalAuthentication,
     ): T? {
         val restClient = buildRestClient(authentication)
         return try {
@@ -65,14 +65,10 @@ class HaalCentraalWebClient(
         }
     }
 
-    fun buildRestClient(
-        authentication: HaalCentraalAuthentication
-    ): RestClient {
-        return restClientBuilder
+    fun buildRestClient(authentication: HaalCentraalAuthentication): RestClient =
+        restClientBuilder
             .clone()
             .apply {
                 authentication.applyAuth(it)
-            }
-            .build()
-    }
+            }.build()
 }

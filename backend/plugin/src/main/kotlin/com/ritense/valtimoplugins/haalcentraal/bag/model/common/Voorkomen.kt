@@ -30,5 +30,5 @@ data class Voorkomen(
     val tijdstipRegistratieLV: String?,
     val tijdstipNietBAG: String?,
     val tijdstipEindRegistratieLV: String?,
-    val tijdstipInactiefLV: String?
+    val tijdstipInactiefLV: String?,
 )

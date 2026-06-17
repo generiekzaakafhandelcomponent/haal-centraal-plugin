@@ -28,32 +28,22 @@ import org.springframework.context.annotation.Bean
 
 @AutoConfiguration
 class HaalCentraalBrpAutoConfiguration {
-
     @Bean
     @ConditionalOnMissingBean(HcBrpClient::class)
-    fun hcBrpClient(
-        haalCentraalWebClient: HaalCentraalWebClient
-    ): HcBrpClient {
-        return HcBrpClient(haalCentraalWebClient)
-    }
+    fun hcBrpClient(haalCentraalWebClient: HaalCentraalWebClient): HcBrpClient = HcBrpClient(haalCentraalWebClient)
 
     @Bean
     @ConditionalOnMissingBean(HaalCentraalBrpService::class)
-    fun haalCentraalBrpService(
-        hcBrpClient: HcBrpClient
-    ): HaalCentraalBrpService {
-        return HaalCentraalBrpService(hcBrpClient)
-    }
+    fun haalCentraalBrpService(hcBrpClient: HcBrpClient): HaalCentraalBrpService = HaalCentraalBrpService(hcBrpClient)
 
     @Bean
     @ConditionalOnMissingBean(HaalCentraalBrpPluginFactory::class)
     fun haalCentraalBrpPluginFactory(
         haalCentraalBrpService: HaalCentraalBrpService,
-        pluginService: PluginService
-    ): HaalCentraalBrpPluginFactory {
-        return HaalCentraalBrpPluginFactory(
+        pluginService: PluginService,
+    ): HaalCentraalBrpPluginFactory =
+        HaalCentraalBrpPluginFactory(
             haalCentraalBrpService,
-            pluginService
+            pluginService,
         )
-    }
 }
