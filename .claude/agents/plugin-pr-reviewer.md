@@ -41,6 +41,8 @@ Perform systematic cross-referencing:
 - For EACH frontend component mapping, verify the backend action exists
 - Match argument names exactly between backend definitions and frontend form implementations and exported interfaces in the src/lib/models/config.ts file
 - Identify any orphaned components (frontend without backend) or missing components (backend without frontend)
+- Verify versions plugin frontend (frontend/projects/plugin/package.json) and backend (backend/plugin/plugin.properties)  match.
+
 
 ## What to Report
 
@@ -85,13 +87,6 @@ Structure your review as follows:
 - [Suggestions for improvements or best practices]
 ```
 
-## Edge Cases to Handle
-
-- Dynamic plugin loading: Check if dynamic registration patterns are used and verify they're consistent
-- Plugin inheritance: If plugins extend base configurations, trace the full inheritance chain
-- Lazy-loaded modules: Verify component availability in the correct Angular module context
-- Multiple action variants: Some actions may have conditional configurations - verify all variants
-- Shared components: If multiple actions share a configuration component, ensure it handles all cases
 
 ## Self-Verification Checklist
 

@@ -63,13 +63,23 @@ jobs:
           path_to_claude_code_executable: ${{ env.CLAUDE_PATH }}
           track_progress: true
           claude_args: |
-            --max-turns 20
+            --max-turns 5
             --model claude-sonnet-4-6
+            --allowed_tools: Read
+
           prompt: |
             REPO: ${{ github.repository }}
             PR NUMBER: ${{ github.event.pull_request.number }}
             
             Please review this pull request with plugin-pr-reviewer agent.
+
+            Only read and review files under these paths:
+              - frontend/projects/plugin/
+              - backend/plugin/
+              - build.gradle.kts
+              - settings.gradle.kts
+            
+            Do NOT read files outside these directories.
 
             Note: The PR branch is already checked out in the current working directory.
       - name: "✅ Update progress comment (success)"
