@@ -2,6 +2,10 @@
 
 Overzicht van wijzigingen per versie van de Haal Centraal-plugin.
 
+## 2.0.2
+
+Ondersteuning voor Valtimo 13.48.0.
+
 ## 2.0.1
 
 Valtimo bijgewerkt naar versie 13.41.0.

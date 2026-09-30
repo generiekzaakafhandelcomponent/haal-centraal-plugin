@@ -1,6 +1,6 @@
 {
   "name": "@valtimo-plugins/haal-centraal",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "peerDependencies": {
     "@angular/common": "19.2.20",
     "@angular/core": "19.2.20"
