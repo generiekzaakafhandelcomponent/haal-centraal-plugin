@@ -27,14 +27,14 @@ All actions can be used on a service task. The resulting list of persons is stor
 
 Every action also requires:
 
-- `fields`: comma separated list of the fields to return, e.g. `burgerservicenummer,naam,geboorte,verblijfplaats`. Only request fields you need and are authorised for. Use the [fields tool](https://developer.rvig.nl/brp-api/fields-samenstellen/) to compose them.
+- `fields`: the fields to return (1 to 130), chosen from a multiselect dropdown. Selecting a parent field such as `naam` returns all of its sub fields. `hc-brp-personen-raadpleeg-bsn` offers all `Persoon` fields; the search actions only offer the `PersoonBeperkt` fields the API allows for searches (name, birth, gender, age, BSN, addressing). Only request fields you need and are authorised for. See the [fields tool](https://developer.rvig.nl/brp-api/fields-samenstellen/). In a process link JSON, `fields` is an array, e.g. `["burgerservicenummer", "naam"]`.
 - `resultProcessVariableName`: name of the process variable to store the result in.
 
-All properties support value resolvers such as `doc:/bsn` or `pv:bsn`.
+All other properties are strings and support value resolvers such as `doc:/bsn` or `pv:bsn`. `huisnummer` must resolve to a number and `inclusiefOverledenPersonen` to `true` or `false`; other values fail the service task.
 
 ### Errors
 
-Invalid parameters or `fields` result in a `400 Bad Request` from the BRP API. The service task fails and an incident is created.
+Before calling the API, the plugin checks that `fields` contains 1 to 130 entries, `huisnummer` is a number and `inclusiefOverledenPersonen` is `true` or `false`. Other invalid parameters result in a `400 Bad Request` from the BRP API. In both cases the service task fails and an incident is created.
 
 ### Local development
 

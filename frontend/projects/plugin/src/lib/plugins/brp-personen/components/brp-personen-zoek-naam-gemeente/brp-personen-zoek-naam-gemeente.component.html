@@ -76,16 +76,17 @@
     [disabled]="obs.disabled"
     [required]="false"
   ></v-input>
-  <v-input
+  <v-select
     name="fields"
     [title]="'fields' | pluginTranslate: pluginId | async"
     [tooltip]="'fieldsTooltip' | pluginTranslate: pluginId | async"
+    [items]="fieldSelectItems"
+    [multiple]="true"
     [margin]="true"
-    [fullWidth]="true"
-    [defaultValue]="obs.prefill?.fields"
+    [defaultSelectionIds]="obs.prefill?.fields"
     [disabled]="obs.disabled"
     [required]="true"
-  ></v-input>
+  ></v-select>
   <v-input
     name="resultProcessVariableName"
     [title]="'resultProcessVariableName' | pluginTranslate: pluginId | async"

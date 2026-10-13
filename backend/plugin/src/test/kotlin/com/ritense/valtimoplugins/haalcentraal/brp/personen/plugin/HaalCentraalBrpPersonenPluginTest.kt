@@ -26,6 +26,7 @@ import com.ritense.valtimoplugins.haalcentraal.brp.personen.model.ZoekMetPostcod
 import com.ritense.valtimoplugins.haalcentraal.brp.personen.model.ZoekMetStraatHuisnummerEnGemeenteVanInschrijving
 import com.ritense.valtimoplugins.haalcentraal.brp.personen.service.HaalCentraalBrpPersonenService
 import com.ritense.valtimoplugins.haalcentraalauth.HaalCentraalAuthentication
+import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.mockito.kotlin.any
@@ -59,7 +60,7 @@ class HaalCentraalBrpPersonenPluginTest {
     fun `raadpleeg met bsn splits comma separated values and stores result`() {
         plugin.raadpleegMetBurgerservicenummer(
             burgerservicenummer = "999993653, 999990019",
-            fields = "naam, geboorte.datum",
+            fields = listOf("naam", " geboorte.datum ", ""),
             gemeenteVanInschrijving = "",
             resultProcessVariableName = "personen",
             execution = execution,
@@ -85,9 +86,9 @@ class HaalCentraalBrpPersonenPluginTest {
             geslacht = "V",
             voorvoegsel = null,
             voornamen = "",
-            inclusiefOverledenPersonen = true,
+            inclusiefOverledenPersonen = "TRUE",
             gemeenteVanInschrijving = null,
-            fields = "naam",
+            fields = listOf("naam"),
             resultProcessVariableName = "personen",
             execution = execution,
         )
@@ -114,7 +115,7 @@ class HaalCentraalBrpPersonenPluginTest {
             geslacht = null,
             voorvoegsel = null,
             inclusiefOverledenPersonen = null,
-            fields = "naam",
+            fields = listOf("naam"),
             resultProcessVariableName = "personen",
             execution = execution,
         )
@@ -135,14 +136,14 @@ class HaalCentraalBrpPersonenPluginTest {
     fun `zoek met postcode en huisnummer`() {
         plugin.zoekMetPostcodeEnHuisnummer(
             postcode = "8011AB",
-            huisnummer = 12,
+            huisnummer = " 12 ",
             huisletter = "a",
             huisnummertoevoeging = null,
             geboortedatum = null,
             geslachtsnaam = null,
             inclusiefOverledenPersonen = null,
             gemeenteVanInschrijving = null,
-            fields = "naam",
+            fields = listOf("naam"),
             resultProcessVariableName = "personen",
             execution = execution,
         )
@@ -163,12 +164,12 @@ class HaalCentraalBrpPersonenPluginTest {
     fun `zoek met straat huisnummer en gemeente van inschrijving`() {
         plugin.zoekMetStraatHuisnummerEnGemeenteVanInschrijving(
             straat = "Grote Markt",
-            huisnummer = 1,
+            huisnummer = "1",
             gemeenteVanInschrijving = "0193",
             huisletter = null,
             huisnummertoevoeging = null,
             inclusiefOverledenPersonen = null,
-            fields = "naam",
+            fields = listOf("naam"),
             resultProcessVariableName = "personen",
             execution = execution,
         )
@@ -191,7 +192,7 @@ class HaalCentraalBrpPersonenPluginTest {
             nummeraanduidingIdentificatie = "0518200000583534",
             inclusiefOverledenPersonen = null,
             gemeenteVanInschrijving = null,
-            fields = "naam",
+            fields = listOf("naam"),
             resultProcessVariableName = "personen",
             execution = execution,
         )
@@ -212,7 +213,7 @@ class HaalCentraalBrpPersonenPluginTest {
             adresseerbaarObjectIdentificatie = "0518010000583534",
             inclusiefOverledenPersonen = null,
             gemeenteVanInschrijving = null,
-            fields = "naam",
+            fields = listOf("naam"),
             resultProcessVariableName = "personen",
             execution = execution,
         )
@@ -225,5 +226,64 @@ class HaalCentraalBrpPersonenPluginTest {
             ),
             authentication,
         )
+    }
+
+    @Test
+    fun `should reject non numeric huisnummer`() {
+        assertThrows(IllegalArgumentException::class.java) {
+            plugin.zoekMetPostcodeEnHuisnummer(
+                postcode = "8011AB",
+                huisnummer = "12a",
+                huisletter = null,
+                huisnummertoevoeging = null,
+                geboortedatum = null,
+                geslachtsnaam = null,
+                inclusiefOverledenPersonen = null,
+                gemeenteVanInschrijving = null,
+                fields = listOf("naam"),
+                resultProcessVariableName = "personen",
+                execution = execution,
+            )
+        }
+    }
+
+    @Test
+    fun `should reject invalid inclusiefOverledenPersonen`() {
+        assertThrows(IllegalArgumentException::class.java) {
+            plugin.zoekMetAdresseerbaarObjectIdentificatie(
+                adresseerbaarObjectIdentificatie = "0518010000583534",
+                inclusiefOverledenPersonen = "ja",
+                gemeenteVanInschrijving = null,
+                fields = listOf("naam"),
+                resultProcessVariableName = "personen",
+                execution = execution,
+            )
+        }
+    }
+
+    @Test
+    fun `should reject empty fields`() {
+        assertThrows(IllegalArgumentException::class.java) {
+            plugin.raadpleegMetBurgerservicenummer(
+                burgerservicenummer = "999993653",
+                fields = listOf(" ", ""),
+                gemeenteVanInschrijving = null,
+                resultProcessVariableName = "personen",
+                execution = execution,
+            )
+        }
+    }
+
+    @Test
+    fun `should reject more than 130 fields`() {
+        assertThrows(IllegalArgumentException::class.java) {
+            plugin.raadpleegMetBurgerservicenummer(
+                burgerservicenummer = "999993653",
+                fields = (1..131).map { "veld$it" },
+                gemeenteVanInschrijving = null,
+                resultProcessVariableName = "personen",
+                execution = execution,
+            )
+        }
     }
 }

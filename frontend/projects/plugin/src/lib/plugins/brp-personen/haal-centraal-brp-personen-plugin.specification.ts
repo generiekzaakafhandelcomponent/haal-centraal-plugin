@@ -59,7 +59,7 @@ const haalCentraalBrpPersonenPluginSpecification: PluginSpecification = {
             burgerservicenummer: 'Burgerservicenummer(s)',
             burgerservicenummerTooltip: 'Eén of meer BSN\'s, gescheiden door komma\'s (max. 20)',
             fields: 'Velden',
-            fieldsTooltip: 'Komma-gescheiden lijst van gewenste velden, bv. burgerservicenummer,naam,geboorte.datum',
+            fieldsTooltip: 'Selecteer de gewenste velden (max. 130). Een bovenliggend veld, bv. naam, levert alle onderliggende velden.',
             geslachtsnaam: 'Geslachtsnaam',
             geboortedatum: 'Geboortedatum (yyyy-mm-dd)',
             geslacht: 'Geslacht (M/V/O)',
@@ -73,7 +73,7 @@ const haalCentraalBrpPersonenPluginSpecification: PluginSpecification = {
             straat: 'Straat',
             nummeraanduidingIdentificatie: 'Nummeraanduiding identificatie',
             adresseerbaarObjectIdentificatie: 'Adresseerbaar object identificatie',
-            inclusiefOverledenPersonen: 'Inclusief overleden personen (true/false)',
+            inclusiefOverledenPersonen: 'Inclusief overleden personen (true/false of value resolver)',
             resultProcessVariableName: 'Result proces variabele naam'
         },
         en: {
@@ -93,7 +93,7 @@ const haalCentraalBrpPersonenPluginSpecification: PluginSpecification = {
             burgerservicenummer: 'Citizen service number(s)',
             burgerservicenummerTooltip: 'One or more BSNs, comma separated (max. 20)',
             fields: 'Fields',
-            fieldsTooltip: 'Comma separated list of requested fields, e.g. burgerservicenummer,naam,geboorte.datum',
+            fieldsTooltip: 'Select the requested fields (max. 130). A parent field, e.g. naam, returns all of its sub fields.',
             geslachtsnaam: 'Surname',
             geboortedatum: 'Date of birth (yyyy-mm-dd)',
             geslacht: 'Gender (M/V/O)',
@@ -107,7 +107,7 @@ const haalCentraalBrpPersonenPluginSpecification: PluginSpecification = {
             straat: 'Street',
             nummeraanduidingIdentificatie: 'Address identification',
             adresseerbaarObjectIdentificatie: 'Addressable object identification',
-            inclusiefOverledenPersonen: 'Include deceased persons (true/false)',
+            inclusiefOverledenPersonen: 'Include deceased persons (true/false or value resolver)',
             resultProcessVariableName: 'Result process variable name'
         }
     }

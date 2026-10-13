@@ -59,7 +59,7 @@ class HaalCentraalBrpPersonenPlugin(
     )
     fun raadpleegMetBurgerservicenummer(
         @PluginActionProperty burgerservicenummer: String,
-        @PluginActionProperty fields: String,
+        @PluginActionProperty fields: List<String>,
         @PluginActionProperty gemeenteVanInschrijving: String?,
         @PluginActionProperty resultProcessVariableName: String,
         execution: DelegateExecution,
@@ -68,8 +68,8 @@ class HaalCentraalBrpPersonenPlugin(
         resultProcessVariableName = resultProcessVariableName,
         query =
             RaadpleegMetBurgerservicenummer(
-                fields = fields.toList(),
-                burgerservicenummer = burgerservicenummer.toList(),
+                fields = fields.cleaned(),
+                burgerservicenummer = burgerservicenummer.splitToList(),
                 gemeenteVanInschrijving = gemeenteVanInschrijving.nullIfBlank(),
             ),
     )
@@ -86,9 +86,9 @@ class HaalCentraalBrpPersonenPlugin(
         @PluginActionProperty geslacht: String?,
         @PluginActionProperty voorvoegsel: String?,
         @PluginActionProperty voornamen: String?,
-        @PluginActionProperty inclusiefOverledenPersonen: Boolean?,
+        @PluginActionProperty inclusiefOverledenPersonen: String?,
         @PluginActionProperty gemeenteVanInschrijving: String?,
-        @PluginActionProperty fields: String,
+        @PluginActionProperty fields: List<String>,
         @PluginActionProperty resultProcessVariableName: String,
         execution: DelegateExecution,
     ) = getPersonen(
@@ -96,13 +96,13 @@ class HaalCentraalBrpPersonenPlugin(
         resultProcessVariableName = resultProcessVariableName,
         query =
             ZoekMetGeslachtsnaamEnGeboortedatum(
-                fields = fields.toList(),
+                fields = fields.cleaned(),
                 geslachtsnaam = geslachtsnaam,
                 geboortedatum = geboortedatum,
                 geslacht = geslacht.nullIfBlank(),
                 voorvoegsel = voorvoegsel.nullIfBlank(),
                 voornamen = voornamen.nullIfBlank(),
-                inclusiefOverledenPersonen = inclusiefOverledenPersonen,
+                inclusiefOverledenPersonen = inclusiefOverledenPersonen.toBooleanOrNull(),
                 gemeenteVanInschrijving = gemeenteVanInschrijving.nullIfBlank(),
             ),
     )
@@ -119,8 +119,8 @@ class HaalCentraalBrpPersonenPlugin(
         @PluginActionProperty gemeenteVanInschrijving: String,
         @PluginActionProperty geslacht: String?,
         @PluginActionProperty voorvoegsel: String?,
-        @PluginActionProperty inclusiefOverledenPersonen: Boolean?,
-        @PluginActionProperty fields: String,
+        @PluginActionProperty inclusiefOverledenPersonen: String?,
+        @PluginActionProperty fields: List<String>,
         @PluginActionProperty resultProcessVariableName: String,
         execution: DelegateExecution,
     ) = getPersonen(
@@ -128,13 +128,13 @@ class HaalCentraalBrpPersonenPlugin(
         resultProcessVariableName = resultProcessVariableName,
         query =
             ZoekMetNaamEnGemeenteVanInschrijving(
-                fields = fields.toList(),
+                fields = fields.cleaned(),
                 geslachtsnaam = geslachtsnaam,
                 voornamen = voornamen,
                 gemeenteVanInschrijving = gemeenteVanInschrijving,
                 geslacht = geslacht.nullIfBlank(),
                 voorvoegsel = voorvoegsel.nullIfBlank(),
-                inclusiefOverledenPersonen = inclusiefOverledenPersonen,
+                inclusiefOverledenPersonen = inclusiefOverledenPersonen.toBooleanOrNull(),
             ),
     )
 
@@ -146,14 +146,14 @@ class HaalCentraalBrpPersonenPlugin(
     )
     fun zoekMetPostcodeEnHuisnummer(
         @PluginActionProperty postcode: String,
-        @PluginActionProperty huisnummer: Int,
+        @PluginActionProperty huisnummer: String,
         @PluginActionProperty huisletter: String?,
         @PluginActionProperty huisnummertoevoeging: String?,
         @PluginActionProperty geboortedatum: String?,
         @PluginActionProperty geslachtsnaam: String?,
-        @PluginActionProperty inclusiefOverledenPersonen: Boolean?,
+        @PluginActionProperty inclusiefOverledenPersonen: String?,
         @PluginActionProperty gemeenteVanInschrijving: String?,
-        @PluginActionProperty fields: String,
+        @PluginActionProperty fields: List<String>,
         @PluginActionProperty resultProcessVariableName: String,
         execution: DelegateExecution,
     ) = getPersonen(
@@ -161,14 +161,14 @@ class HaalCentraalBrpPersonenPlugin(
         resultProcessVariableName = resultProcessVariableName,
         query =
             ZoekMetPostcodeEnHuisnummer(
-                fields = fields.toList(),
+                fields = fields.cleaned(),
                 postcode = postcode,
-                huisnummer = huisnummer,
+                huisnummer = huisnummer.toHuisnummer(),
                 huisletter = huisletter.nullIfBlank(),
                 huisnummertoevoeging = huisnummertoevoeging.nullIfBlank(),
                 geboortedatum = geboortedatum.nullIfBlank(),
                 geslachtsnaam = geslachtsnaam.nullIfBlank(),
-                inclusiefOverledenPersonen = inclusiefOverledenPersonen,
+                inclusiefOverledenPersonen = inclusiefOverledenPersonen.toBooleanOrNull(),
                 gemeenteVanInschrijving = gemeenteVanInschrijving.nullIfBlank(),
             ),
     )
@@ -181,12 +181,12 @@ class HaalCentraalBrpPersonenPlugin(
     )
     fun zoekMetStraatHuisnummerEnGemeenteVanInschrijving(
         @PluginActionProperty straat: String,
-        @PluginActionProperty huisnummer: Int,
+        @PluginActionProperty huisnummer: String,
         @PluginActionProperty gemeenteVanInschrijving: String,
         @PluginActionProperty huisletter: String?,
         @PluginActionProperty huisnummertoevoeging: String?,
-        @PluginActionProperty inclusiefOverledenPersonen: Boolean?,
-        @PluginActionProperty fields: String,
+        @PluginActionProperty inclusiefOverledenPersonen: String?,
+        @PluginActionProperty fields: List<String>,
         @PluginActionProperty resultProcessVariableName: String,
         execution: DelegateExecution,
     ) = getPersonen(
@@ -194,13 +194,13 @@ class HaalCentraalBrpPersonenPlugin(
         resultProcessVariableName = resultProcessVariableName,
         query =
             ZoekMetStraatHuisnummerEnGemeenteVanInschrijving(
-                fields = fields.toList(),
+                fields = fields.cleaned(),
                 straat = straat,
-                huisnummer = huisnummer,
+                huisnummer = huisnummer.toHuisnummer(),
                 gemeenteVanInschrijving = gemeenteVanInschrijving,
                 huisletter = huisletter.nullIfBlank(),
                 huisnummertoevoeging = huisnummertoevoeging.nullIfBlank(),
-                inclusiefOverledenPersonen = inclusiefOverledenPersonen,
+                inclusiefOverledenPersonen = inclusiefOverledenPersonen.toBooleanOrNull(),
             ),
     )
 
@@ -212,9 +212,9 @@ class HaalCentraalBrpPersonenPlugin(
     )
     fun zoekMetNummeraanduidingIdentificatie(
         @PluginActionProperty nummeraanduidingIdentificatie: String,
-        @PluginActionProperty inclusiefOverledenPersonen: Boolean?,
+        @PluginActionProperty inclusiefOverledenPersonen: String?,
         @PluginActionProperty gemeenteVanInschrijving: String?,
-        @PluginActionProperty fields: String,
+        @PluginActionProperty fields: List<String>,
         @PluginActionProperty resultProcessVariableName: String,
         execution: DelegateExecution,
     ) = getPersonen(
@@ -222,9 +222,9 @@ class HaalCentraalBrpPersonenPlugin(
         resultProcessVariableName = resultProcessVariableName,
         query =
             ZoekMetNummeraanduidingIdentificatie(
-                fields = fields.toList(),
+                fields = fields.cleaned(),
                 nummeraanduidingIdentificatie = nummeraanduidingIdentificatie,
-                inclusiefOverledenPersonen = inclusiefOverledenPersonen,
+                inclusiefOverledenPersonen = inclusiefOverledenPersonen.toBooleanOrNull(),
                 gemeenteVanInschrijving = gemeenteVanInschrijving.nullIfBlank(),
             ),
     )
@@ -237,9 +237,9 @@ class HaalCentraalBrpPersonenPlugin(
     )
     fun zoekMetAdresseerbaarObjectIdentificatie(
         @PluginActionProperty adresseerbaarObjectIdentificatie: String,
-        @PluginActionProperty inclusiefOverledenPersonen: Boolean?,
+        @PluginActionProperty inclusiefOverledenPersonen: String?,
         @PluginActionProperty gemeenteVanInschrijving: String?,
-        @PluginActionProperty fields: String,
+        @PluginActionProperty fields: List<String>,
         @PluginActionProperty resultProcessVariableName: String,
         execution: DelegateExecution,
     ) = getPersonen(
@@ -247,9 +247,9 @@ class HaalCentraalBrpPersonenPlugin(
         resultProcessVariableName = resultProcessVariableName,
         query =
             ZoekMetAdresseerbaarObjectIdentificatie(
-                fields = fields.toList(),
+                fields = fields.cleaned(),
                 adresseerbaarObjectIdentificatie = adresseerbaarObjectIdentificatie,
-                inclusiefOverledenPersonen = inclusiefOverledenPersonen,
+                inclusiefOverledenPersonen = inclusiefOverledenPersonen.toBooleanOrNull(),
                 gemeenteVanInschrijving = gemeenteVanInschrijving.nullIfBlank(),
             ),
     )
@@ -260,6 +260,9 @@ class HaalCentraalBrpPersonenPlugin(
         query: PersonenQuery,
     ) {
         logger.info { "Retrieving personen (${query.type}) for case ${execution.businessKey}" }
+        require(query.fields.size in 1..MAX_FIELDS) {
+            "fields must contain between 1 and $MAX_FIELDS fields, but contained ${query.fields.size}"
+        }
 
         val personen =
             haalCentraalBrpPersonenService.getPersonen(
@@ -271,14 +274,26 @@ class HaalCentraalBrpPersonenPlugin(
         execution.processInstance.setVariable(resultProcessVariableName, personen)
     }
 
-    private fun String.toList(): List<String> =
-        split(',')
-            .map { it.trim() }
+    private fun String.splitToList(): List<String> = split(',').cleaned()
+
+    private fun List<String>.cleaned(): List<String> =
+        map { it.trim() }
             .filter { it.isNotEmpty() }
+
+    private fun String.toHuisnummer(): Int =
+        trim().toIntOrNull()
+            ?: throw IllegalArgumentException("huisnummer must be a number, but was '$this'")
+
+    private fun String?.toBooleanOrNull(): Boolean? =
+        nullIfBlank()?.let {
+            it.trim().lowercase().toBooleanStrictOrNull()
+                ?: throw IllegalArgumentException("inclusiefOverledenPersonen must be 'true' or 'false', but was '$it'")
+        }
 
     private fun String?.nullIfBlank(): String? = this?.takeIf { it.isNotBlank() }
 
     companion object {
         private val logger = KotlinLogging.logger { }
+        private const val MAX_FIELDS = 130
     }
 }

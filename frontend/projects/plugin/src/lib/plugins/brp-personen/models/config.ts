@@ -22,15 +22,17 @@ interface BrpPersonenConfig extends PluginConfigurationData {
     authenticationPluginConfiguration: string;
 }
 
+/*
+ * All values except `fields` are strings, so they can also contain a value resolver such as `doc:/bsn` or `pv:bsn`.
+ */
 interface BrpPersonenBaseActionConfig {
-    fields: string;
+    fields: Array<string>;
     resultProcessVariableName: string;
-    inclusiefOverledenPersonen?: boolean;
-    gemeenteVanInschrijving?: string;
 }
 
 interface RaadpleegMetBsnConfig extends BrpPersonenBaseActionConfig {
     burgerservicenummer: string;
+    gemeenteVanInschrijving?: string;
 }
 
 interface ZoekMetGeslachtsnaamEnGeboortedatumConfig extends BrpPersonenBaseActionConfig {
@@ -39,6 +41,8 @@ interface ZoekMetGeslachtsnaamEnGeboortedatumConfig extends BrpPersonenBaseActio
     geslacht?: string;
     voorvoegsel?: string;
     voornamen?: string;
+    inclusiefOverledenPersonen?: string;
+    gemeenteVanInschrijving?: string;
 }
 
 interface ZoekMetNaamEnGemeenteConfig extends BrpPersonenBaseActionConfig {
@@ -47,6 +51,7 @@ interface ZoekMetNaamEnGemeenteConfig extends BrpPersonenBaseActionConfig {
     gemeenteVanInschrijving: string;
     geslacht?: string;
     voorvoegsel?: string;
+    inclusiefOverledenPersonen?: string;
 }
 
 interface ZoekMetPostcodeEnHuisnummerConfig extends BrpPersonenBaseActionConfig {
@@ -56,6 +61,8 @@ interface ZoekMetPostcodeEnHuisnummerConfig extends BrpPersonenBaseActionConfig 
     huisnummertoevoeging?: string;
     geboortedatum?: string;
     geslachtsnaam?: string;
+    inclusiefOverledenPersonen?: string;
+    gemeenteVanInschrijving?: string;
 }
 
 interface ZoekMetStraatHuisnummerEnGemeenteConfig extends BrpPersonenBaseActionConfig {
@@ -64,14 +71,19 @@ interface ZoekMetStraatHuisnummerEnGemeenteConfig extends BrpPersonenBaseActionC
     gemeenteVanInschrijving: string;
     huisletter?: string;
     huisnummertoevoeging?: string;
+    inclusiefOverledenPersonen?: string;
 }
 
 interface ZoekMetNummeraanduidingConfig extends BrpPersonenBaseActionConfig {
     nummeraanduidingIdentificatie: string;
+    inclusiefOverledenPersonen?: string;
+    gemeenteVanInschrijving?: string;
 }
 
 interface ZoekMetAdresseerbaarObjectConfig extends BrpPersonenBaseActionConfig {
     adresseerbaarObjectIdentificatie: string;
+    inclusiefOverledenPersonen?: string;
+    gemeenteVanInschrijving?: string;
 }
 
 export {

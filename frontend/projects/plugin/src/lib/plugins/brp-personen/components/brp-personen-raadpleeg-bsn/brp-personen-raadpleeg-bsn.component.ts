@@ -16,7 +16,7 @@
  */
 
 import {Component} from '@angular/core';
-import {RaadpleegMetBsnConfig} from '../../models';
+import {PERSOON_FIELDS, RaadpleegMetBsnConfig} from '../../models';
 import {BrpPersonenBaseActionComponent} from '../brp-personen-base-action.component';
 
 @Component({
@@ -27,4 +27,5 @@ import {BrpPersonenBaseActionComponent} from '../brp-personen-base-action.compon
 })
 export class BrpPersonenRaadpleegBsnComponent extends BrpPersonenBaseActionComponent<RaadpleegMetBsnConfig> {
     protected readonly requiredFields: Array<keyof RaadpleegMetBsnConfig> = ['burgerservicenummer'];
+    protected override readonly fieldOptions: ReadonlyArray<string> = PERSOON_FIELDS;
 }

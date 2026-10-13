@@ -17,7 +17,7 @@
     "processLinkType": "plugin",
     "actionProperties": {
       "burgerservicenummer": "doc:/bsn",
-      "fields": "burgerservicenummer,naam,geboorte,verblijfplaats",
+      "fields": ["burgerservicenummer", "naam", "geboorte", "verblijfplaats"],
       "resultProcessVariableName": "results"
     }
   }
