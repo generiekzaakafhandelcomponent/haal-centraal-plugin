@@ -42,7 +42,7 @@ dockerCompose {
 }
 
 tasks.bootRun {
-    dependsOn("composeUp")
+    //dependsOn("composeUp")
     systemProperty("spring.profiles.include", "dev")
     val t = this
     doFirst {

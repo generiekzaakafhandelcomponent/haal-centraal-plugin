@@ -17,6 +17,15 @@
     }
   },
   {
+    "id": "3c2f3a4e-8b1d-4f6e-9a57-2d7b1e0c9f41",
+    "title": "Haal Centraal BRP Personen (Autodeployed)",
+    "pluginDefinitionKey": "haalcentraalbrppersonen",
+    "properties": {
+      "brpPersonenBaseUrl": "http://localhost:5011/haalcentraal/api/brp",
+      "authenticationPluginConfiguration": "6a6a3adc-ad44-4774-bcb0-b1a34c426561"
+    }
+  },
+  {
     "id": "f53419b3-a825-4bc1-ab92-a44757b5666c",
     "title": "Haal Centraal BAG (Autodeployed)",
     "pluginDefinitionKey": "haalcentraalbag",

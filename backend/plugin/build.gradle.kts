@@ -57,6 +57,7 @@ dependencies {
     testImplementation("com.ritense.valtimo:test-utils-common")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:$mockitoKotlinVersion")
 
     testImplementation("org.postgresql:postgresql")
     testImplementation("io.github.oshai:kotlin-logging-jvm:$kotlinLoggingVersion")
