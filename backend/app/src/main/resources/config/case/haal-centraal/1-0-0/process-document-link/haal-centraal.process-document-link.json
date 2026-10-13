@@ -8,5 +8,10 @@
     "processDefinitionKey": "haal-centraal-BAGGAOID",
     "canInitializeDocument": true,
     "startableByUser": true
+  },
+  {
+    "processDefinitionKey": "haal-centraal-HCBRPPB",
+    "canInitializeDocument": true,
+    "startableByUser": true
   }
 ]

@@ -1,6 +1,6 @@
 # Haal Centraal Plugin
 
-BRP- en BAG-gegevens ophalen via Haal Centraal.
+BRP- (Bewoning en Personen) en BAG-gegevens ophalen via Haal Centraal.
 
 ## Documentation
 

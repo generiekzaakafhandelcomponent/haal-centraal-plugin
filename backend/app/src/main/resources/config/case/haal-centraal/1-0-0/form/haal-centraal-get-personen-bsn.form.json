@@ -1,0 +1,26 @@
+{
+  "display": "form",
+  "components": [
+    {
+      "key": "bsn",
+      "type": "textfield",
+      "input": true,
+      "label": "Burgerservicenummer",
+      "validate": { "required": true },
+      "tableView": true,
+      "applyMaskOn": "change",
+      "defaultValue": "999993653"
+    },
+    {
+      "key": "submit",
+      "type": "button",
+      "block": true,
+      "input": true,
+      "label": "Submit",
+      "tableView": false,
+      "saveOnEnter": false,
+      "showValidations": false,
+      "disableOnInvalid": true
+    }
+  ]
+}

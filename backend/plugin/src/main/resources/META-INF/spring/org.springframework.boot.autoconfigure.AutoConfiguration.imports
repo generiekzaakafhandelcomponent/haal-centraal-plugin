@@ -1,3 +1,4 @@
 com.ritense.valtimoplugins.haalcentraal.bag.autoconfigure.HaalCentraalBagAutoConfiguration
 com.ritense.valtimoplugins.haalcentraal.brp.autoconfigure.HaalCentraalBrpAutoConfiguration
 com.ritense.valtimoplugins.haalcentraal.shared.autoconfigure.HaalCentraalAutoConfiguration
+com.ritense.valtimoplugins.haalcentraal.brp.personen.autoconfigure.HaalCentraalBrpPersonenAutoConfiguration
